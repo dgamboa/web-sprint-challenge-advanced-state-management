@@ -31,17 +31,17 @@ In this challenge, you are to build a Smurfs village database utilizing Redux as
 
 ### Task 2: CodeGrade Setup
 
-* [ ] Open the assignment in Canvas and following along with the attached document [here.](https://www.notion.so/lambdaschool/Submitting-an-assignment-via-Code-Grade-A-Step-by-Step-Walkthrough-07bd65f5f8364e709ecb5064735ce374).
-* [ ] Follow instructions to set up Codegrade's Webhook and Deploy Key, making sure your deployment is set to your `<firstName-lastName>`.
-* [ ] Push your first commit: `git commit --allow-empty -m "first commit" && git push`
-* [ ] Check to see that Codegrade has accepted your git submission.
+* [x] Open the assignment in Canvas and following along with the attached document [here.](https://www.notion.so/lambdaschool/Submitting-an-assignment-via-Code-Grade-A-Step-by-Step-Walkthrough-07bd65f5f8364e709ecb5064735ce374).
+* [x] Follow instructions to set up Codegrade's Webhook and Deploy Key, making sure your deployment is set to your `<firstName-lastName>`.
+* [x] Push your first commit: `git commit --allow-empty -m "first commit" && git push`
+* [x] Check to see that Codegrade has accepted your git submission.
 
 ### Task 3: Project Requirements
 
  Your finished project must include all of the following requirements.
 
 #### reducers/index.js
-  Add in the needed state and reducer cases to hold and modify smurf error messages, loading status and smurf data. **If at all possible, add in action cases one at a time, instead of all at once. Test your state connects and reducer cases as nessisary.**
+  Add in the needed state and reducer cases to hold and modify smurf error messages, loading status and smurf data. **If at all possible, add in action cases one at a time, instead of all at once. Test your state connects and reducer cases as necessary.**
 
   * [ ] Adds the following state values into the initialState:
       - an array of smurfs
@@ -156,17 +156,24 @@ Example of object created in Smurf DB:
 
 ## Submission format
 
-* [ ] Submit via Codegrade by commiting and pushing any new changes.
+* [x] Submit via Codegrade by commiting and pushing any new changes.
 * [ ] Submit a pull-request to merge <firstName-lastName> branch into main. **Please don't merge your own pull request and make sure you are on your own repo**
-* [ ] Check codegrade for automated feedback.
-* [ ] Check codegrade on Monday following the Sprint Challenge for reviewer feedback.
-* [ ] Any changes pushed to your <firstName-lastName> branch will resubmited to codegrade if pushed before the sprint challenge deadline. Changes after the deadline will not be reviewed.
+* [x] Check codegrade for automated feedback.
+* [x] Check codegrade on Monday following the Sprint Challenge for reviewer feedback.
+* [x] Any changes pushed to your <firstName-lastName> branch will resubmited to codegrade if pushed before the sprint challenge deadline. Changes after the deadline will not be reviewed.
 
 ## Interview Questions
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers to the questions within `interview_answers.md` file. These will not be counted as a part of your sprint score but will be helpful for preparing you for your endorsement interview, and enhancing overall understanding.
 
 1. What problem does the context API help solve?
+* Context API is a communication system for state that helps us deal with lots of nested components that need to pass state. It helps avoid significant prop drilling by giving deeply nested components direct access to pre-defined slices of state at a global level.
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+* Actions are the counterparts to state. That is, whereas state is the minimal representation of data in an app, an action is the minimal representations of a change to that data. In practice that simply means that an action is the mechanism by which we change the state of the application from one state to another. Actions at a minium include an action type and can also include an action payload. The payload is data that will interact to update state through the reducer. Reducers are closely related to actions in that reducers are the intermediaries that take an action, determine the appropriate reaction, and update state accordingly. As such they take in current state and the action and return updated state. In a redux app, the state lives in the store. The store is an object that contains a full representation of global state and can be accessed by components throughout the application if they're appropriately connected to it. These three features - actions, reducer and store - along with their interactions, make up the high-level architecture implemented by redux, which is a JavaScript library for state management.
+
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
+* `redux-thunk` allows us to handle asynchronous calls to the reducer. It intercepts them and acts depending on whether it's an action object or a function. If it's an action, it passes it to the reducer. If it's a function, it invokes it and passes dispatch as an argument to it. Action creators change because instead of returning an action object, they can now return a function that can make asynchronous call and dispatch actions when ready. 
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+* At this point, and mainly because of the complexity of redux, I prefer working with State and Context. There are less moving parts and less abstractions, which makes it simpler to visualize the processes and connections in the code base. Having said that, as I get more comfortable with redux, I suspect I'll be able to more easily visualize and manipulate the key components. When that happens, redux will likely become my go-to system since it offers a comprehensive solution to state management.
