@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { addSmurf, setError } from "../actions";
 
-const AddForm = (props) => {
-    const { formError, addSmurf, setError } = props;
+const initialFormState = {
+  name:"",
+  position:"",
+  nickname:"",
+  description:""
+}
 
-    const [state, setState] = useState({
-        name:"",
-        position:"",
-        nickname:"",
-        description:""
-    });
+const AddForm = (props) => {
+    const { formError, serverError, addSmurf, setError } = props;
+
+    const [state, setState] = useState(initialFormState);
 
     const handleChange = e => {
         setState({
@@ -31,6 +33,7 @@ const AddForm = (props) => {
           description: state.description,
         };
         addSmurf(smurf);
+        setState(initialFormState);
     }
 
     return(<section>
@@ -55,6 +58,9 @@ const AddForm = (props) => {
             {
                 formError && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {formError}</div>
             }
+            {
+                serverError && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {serverError}, please try again</div>
+            }
             <button>Submit Smurf</button>
         </form>
     </section>);
@@ -62,7 +68,8 @@ const AddForm = (props) => {
 
 const mapStateToStore = state => {
   return ({
-    formError: state.formError
+    formError: state.formError,
+    serverError: state.serverError
   });
 };
 

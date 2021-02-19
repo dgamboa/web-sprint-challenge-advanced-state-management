@@ -24,6 +24,8 @@ const reducer = (state = initialState, action) => {
       return ({
         ...state,
         isLoading: false,
+        formError: "",
+        serverError: "",
         smurfs: [...state.smurfs, action.payload]
       });
     case(SET_ERROR):
@@ -36,6 +38,7 @@ const reducer = (state = initialState, action) => {
       return ({
         ...state,
         isLoading: false,
+        formError: "",
         serverError: action.payload
       });
     default:

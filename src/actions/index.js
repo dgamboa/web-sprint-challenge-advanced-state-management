@@ -24,6 +24,7 @@ export const addSmurf = smurf => dispatch => {
       dispatch(addSmurfSuccess(smurf));
     })
     .catch(err => {
+      console.log(err.message)
       dispatch(serverFail(err.message));
     })
 }
