@@ -8,9 +8,8 @@ export const SET_ERROR = "SET_ERROR";
 export const fetchSmurfs = () => dispatch => {
   dispatch(fetchSmurfsLoading());
 
-  axios.get("http:/localhost:3333/smurfs")
+  axios.get("http://localhost:3333/smurfs")
     .then(res => {
-      console.log(res)
       dispatch(fetchSmurfsSuccess(res.data));
     })
     .catch(err => {
@@ -20,7 +19,7 @@ export const fetchSmurfs = () => dispatch => {
 }
 
 export const addSmurf = smurf => dispatch => {
-  axios.post("http:/localhost:3333/smurfs", smurf)
+  axios.post("http://localhost:3333/smurfs", smurf)
     .then(res => {
       console.log(res);
       dispatch(addSmurfSuccess(res.data));
