@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const FETCH_SMURFS_LOADING = "FETCH_SMURFS_LOADING";
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
+export const SERVER_FAIL = "SERVER_FAIL";
 export const ADD_SMURF = "ADD_SMURF";
 export const SET_ERROR = "SET_ERROR";
 
@@ -13,20 +14,17 @@ export const fetchSmurfs = () => dispatch => {
       dispatch(fetchSmurfsSuccess(res.data));
     })
     .catch(err => {
-      console.log(err)
-      // dispatch(setError(err.data.Error));
+      dispatch(serverFail(err.message));
     })
 }
 
 export const addSmurf = smurf => dispatch => {
   axios.post("http://localhost:3333/smurfs", smurf)
     .then(res => {
-      console.log(res);
-      dispatch(addSmurfSuccess(res.data));
+      dispatch(addSmurfSuccess(smurf));
     })
     .catch(err => {
-      console.log(err);
-      // dispatch(setError(err.data.Error));
+      dispatch(serverFail(err.message));
     })
 }
 
@@ -45,6 +43,13 @@ const addSmurfSuccess = smurf => {
   return({
     type: ADD_SMURF,
     payload: smurf
+  });
+};
+
+const serverFail = error => {
+  return ({
+    type: SERVER_FAIL,
+    payload: error
   });
 };
 

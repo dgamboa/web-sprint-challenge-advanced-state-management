@@ -130,7 +130,7 @@ In this challenge, you are to build a Smurfs village database utilizing Redux as
 ```
 
 
-- [ ] Double check to make sure that a smurf is created correctly once your functionality is built out. Initially Poppa and Smurfette will be in the array.
+- [x] Double check to make sure that a smurf is created correctly once your functionality is built out. Initially Poppa and Smurfette will be in the array.
 
 **HINT** if you are going to be working on Stretch Problem, you'll need to use that unique `id`.
 

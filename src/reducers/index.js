@@ -1,9 +1,10 @@
-import { FETCH_SMURFS_LOADING, FETCH_SMURFS_SUCCESS, ADD_SMURF, SET_ERROR } from "../actions";
+import { FETCH_SMURFS_LOADING, FETCH_SMURFS_SUCCESS, ADD_SMURF, SET_ERROR, SERVER_FAIL } from "../actions";
 
 export const initialState = {
   smurfs: [],
   isLoading: false,
-  error: ""
+  serverError: "",
+  formError: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,7 +30,13 @@ const reducer = (state = initialState, action) => {
       return ({
         ...state,
         isLoading: false,
-        error: action.payload
+        formError: action.payload
+      });
+    case(SERVER_FAIL):
+      return ({
+        ...state,
+        isLoading: false,
+        serverError: action.payload
       });
     default:
       return state;

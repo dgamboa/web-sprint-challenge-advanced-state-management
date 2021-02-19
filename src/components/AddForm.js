@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { addSmurf, setError } from "../actions";
 
 const AddForm = (props) => {
-    const { error, addSmurf, setError } = props;
+    const { formError, addSmurf, setError } = props;
 
     const [state, setState] = useState({
         name:"",
@@ -22,10 +22,9 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            setError("Name, position and nickname fields are required.");
+            return setError("Name, position and nickname fields are required.");
         };
         const smurf = {
-          id: Date.now(),
           name: state.name,
           position: state.position,
           nickname: state.nickname,
@@ -54,7 +53,7 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {error}</div>
+                formError && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {formError}</div>
             }
             <button>Submit Smurf</button>
         </form>
@@ -63,7 +62,7 @@ const AddForm = (props) => {
 
 const mapStateToStore = state => {
   return ({
-    error: state.error
+    formError: state.formError
   });
 };
 
