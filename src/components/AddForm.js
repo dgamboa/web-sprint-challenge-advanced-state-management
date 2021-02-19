@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+import { addSmurf, setError } from "../actions";
 
 const AddForm = (props) => {
+    const { error, addSmurf, setError } = props;
+
     const [state, setState] = useState({
         name:"",
         position:"",
@@ -10,18 +14,24 @@ const AddForm = (props) => {
 
     const handleChange = e => {
         setState({
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         });
     }
 
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            errorMessage = "Name, position and nickname fields are required.";
-        }
+            setError("Name, position and nickname fields are required.");
+        };
+        const smurf = {
+          id: Date.now(),
+          name: state.name,
+          position: state.position,
+          nickname: state.nickname,
+          description: state.description,
+        };
+        addSmurf(smurf);
     }
-
-    const errorMessage = "";
 
     return(<section>
         <h2>Add Smurf</h2>
@@ -43,17 +53,23 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {error}</div>
             }
             <button>Submit Smurf</button>
         </form>
     </section>);
 }
 
-export default AddForm;
+const mapStateToStore = state => {
+  return ({
+    error: state.error
+  });
+};
+
+export default connect(mapStateToStore, { addSmurf, setError })(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.
 //2. Replace all instances of the errorMessage static variable with your error message state value. 
 //3. Within the handleSubmit function, replace the static assignment to errorMessage with a call to the setError action. Test that an error is displayed when this validation code fails.
-//4. Within the handleSubmit function, call your addSmurf action with the smurf name, position, nickname and summury passed as arguments. Test that a smurf is correctly added to when the form is submitted.
+//4. Within the handleSubmit function, call your addSmurf action with the smurf name, position, nickname and summary passed as arguments. Test that a smurf is correctly added when the form is submitted.
