@@ -157,7 +157,7 @@ Example of object created in Smurf DB:
 ## Submission format
 
 * [x] Submit via Codegrade by commiting and pushing any new changes.
-* [ ] Submit a pull-request to merge <firstName-lastName> branch into main. **Please don't merge your own pull request and make sure you are on your own repo**
+* [x] Submit a pull-request to merge <firstName-lastName> branch into main. **Please don't merge your own pull request and make sure you are on your own repo**
 * [x] Check codegrade for automated feedback.
 * [x] Check codegrade on Monday following the Sprint Challenge for reviewer feedback.
 * [x] Any changes pushed to your <firstName-lastName> branch will resubmited to codegrade if pushed before the sprint challenge deadline. Changes after the deadline will not be reviewed.

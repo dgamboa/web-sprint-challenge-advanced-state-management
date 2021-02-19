@@ -32,6 +32,7 @@ const reducer = (state = initialState, action) => {
       return ({
         ...state,
         isLoading: false,
+        serverError: "",
         formError: action.payload
       });
     case(SERVER_FAIL):
