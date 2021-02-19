@@ -56,7 +56,7 @@ In this challenge, you are to build a Smurfs village database utilizing Redux as
   * [x] Add in a reducer case that adds in a value to the error message.
 
 #### index.js
-  * [ ] Connect your application to reducer through redux with the thunk and logger middleware packages attached.
+  * [x] Connect your application to reducer through redux with the thunk and logger middleware packages attached.
 
 #### actions/index.js
   Add in the action creators and action constants needed to add a smurf to state and fetch smurfs from the server. **If at all possible, add in action cases one at a time, instead of all at once. Test your state connects and reducer cases as nessisary.**
